@@ -172,24 +172,10 @@ int main()
     num.printAll();
     num.addValue(25);
     num.printAll();
-
-    // int *ar;
-    // ar = new int[3];
-    // for (int i = 0; i < 3; i++)
-    //     ar[i] = i + 1;
-    // for (int i = 0; i < 3; i++)
-    //     cout << ar[i] << " ";
-    // cout << endl;
-    // cout << "deleting array" << endl;
-    // int *newarray = new int[6];
-    // for (int i = 0; i < 3; i++)
-    //     newarray[i] = ar[i];
-    // delete[] ar;
-    // ar = new int[6];
-    // copy(newarray, newarray + 3, ar);
-    // for (int i = 0; i < 6; i++)
-    //     cout << ar[i] << " ";
-    // cout << endl;
+    cout<<num.valueAt(2)<<endl;
+    if(num.hasValue(45))
+        num.removeValue(25);
+    num.printAll();
 
     return 0;
 }
