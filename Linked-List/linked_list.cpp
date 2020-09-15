@@ -35,23 +35,9 @@ class LinkedList{
         int get(int pos);
         bool removeValue(int value);
         bool removeAt(int pos);
-        bool removeAll();
+        void clear();
         int getSize();
-        void printAll()
-        {
-            Node *cnode=listdetails.listhead;
-            while (cnode->next!=nullptr)
-            {
-                cout<<cnode->value<<" ";
-                cnode=cnode->next;
-                if(cnode->next==nullptr)
-                    cout<<cnode->value;
-            }
-            cout<<endl;
-
-            return;
-            
-        }
+        void listTraversal();
         
 };
 
@@ -77,6 +63,21 @@ LinkedList::~LinkedList()
 bool LinkedList::isIndexValid(int pos)
 {
     return (pos>=0 and pos<listdetails.listsize);
+}
+
+void LinkedList::listTraversal()
+{
+    Node *cnode=listdetails.listhead;
+    while (cnode->next!=nullptr)
+    {
+        cout<<cnode->value<<" ";
+        cnode=cnode->next;
+        if(cnode->next==nullptr)
+            cout<<cnode->value;
+    }
+    cout<<endl;
+
+    return;
 }
 
 bool LinkedList::addItem(int value)
@@ -192,9 +193,8 @@ bool LinkedList::removeValue(int value)
             listdetails.isEmpty=true;
         return true;
     }
-    
-
 }
+
 bool LinkedList::removeAt(int pos)
 {
 
@@ -230,15 +230,12 @@ bool LinkedList::removeAt(int pos)
             listdetails.isEmpty=true;
         return true;
     }
-    
-    
-
 }
 
-bool LinkedList::removeAll()
+void LinkedList::clear()
 {
     if(listdetails.isEmpty)
-        return true;
+        return;
     while (listdetails.listhead->next!=nullptr)
     {
         Node *currentNode=listdetails.listhead;
@@ -248,7 +245,7 @@ bool LinkedList::removeAll()
 
     listdetails.isEmpty=true;
     listdetails.listsize=0;
-    return true;
+    return;
     
 }
 
@@ -264,13 +261,13 @@ int main(int argc, char const *argv[])
 {
 
     LinkedList mynumbers({1,2,3,4,5,2,9});
-    mynumbers.printAll();
+    mynumbers.listTraversal();
 
     cout<<"checking addItemAt function"<<endl;
     mynumbers.addItemAt(0,15);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
     mynumbers.addItemAt(4,25);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
 
     cout<<"checking get function"<<endl;  
     cout<<mynumbers.get(0)<<endl;
@@ -281,26 +278,23 @@ int main(int argc, char const *argv[])
     
     cout<<"checking removeValue function"<<endl;
     mynumbers.removeValue(25);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
     mynumbers.removeValue(15);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
     mynumbers.removeValue(9);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
 
     cout<<"checking removeat function"<<endl;
     mynumbers.removeAt(0);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
     mynumbers.removeAt(3);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
     mynumbers.removeAt(mynumbers.getSize()-1);
-    mynumbers.printAll();
+    mynumbers.listTraversal();
 
     cout<<"Checking removeAll function"<<endl;
-    mynumbers.removeAll();
+    mynumbers.clear();
     if(mynumbers.getSize()==0)
         cout<<"There is no number inside the mynumbers variable"<<endl;
-    
-
-
     return 0;
 }
