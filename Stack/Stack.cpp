@@ -1,4 +1,5 @@
 #include <iostream>
+#include <exception>
 #include <string>
 
 using namespace std;
@@ -28,8 +29,8 @@ public:
     ~Stack();
     void push(T value);
     T pop();
-    T front();
-    int getSize();
+    T peek();
+    int size();
     bool isEmpty();
 };
 
@@ -73,7 +74,7 @@ template<typename T>
 T Stack<T>::pop()
 {
     if(stackdetails.stacksize==0)
-        throw -1;
+        throw invalid_argument("Stack is Empty");
     else
     {
         T popitem=stackdetails.head->value;
@@ -87,7 +88,7 @@ T Stack<T>::pop()
 }
 
 template<typename T>
-T Stack<T>::front()
+T Stack<T>::peek()
 {
 
     if(!isEmpty()){
@@ -95,14 +96,14 @@ T Stack<T>::front()
     }
     else
     {
-        throw -1;
+        throw invalid_argument("Stack is Empty");
     }
 
 
 }
 
 template<typename T>
-int Stack<T>::getSize()
+int Stack<T>::size()
 {
     return stackdetails.stacksize;
 }
@@ -123,8 +124,8 @@ int main(int argc, char const *argv[])
     books.push("Bangla");
     books.push("English");
     books.push("Math");
-    cout<<"Total books "<<books.getSize()<<endl;
-    cout<<"The top books on the stack is "<<books.front()<<endl;
+    cout<<"Total books "<<books.size()<<endl;
+    cout<<"The top books on the stack is "<<books.peek()<<endl;
     cout<<"Removing "<<books.pop()<<" from the stack"<<endl;
 
 
